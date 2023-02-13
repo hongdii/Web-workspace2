@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 //WEB-INF 폴더안의 sql문이나 properties파일 건들지않기
@@ -59,15 +61,68 @@ public class JDBCTemplate {
 	}
 	
 	// 2. 전달받은 Connection 객체를 가지고 commit해주는 메서드
+	// static 메서드로 만들어야 실행마다 예외처리를 하지 않아도됨
+	public static void commit(Connection conn) {
+		
+		try {
+			// conn != null --> nullpointexception 에러 방지
+			// !conn.isClosed() --> 자원 미반납 상태
+			if(conn != null && !conn.isClosed()) {
+				conn.commit();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	// 3. 전달받은 Connection 객체를 가지고 rollback해주는 메소드
-	
+	public static void rollback(Connection conn) {
+		
+		try {
+			// conn != null --> nullpointexception 에러 방지
+			// !conn.isClosed()
+			if(conn != null && !conn.isClosed()) {
+				conn.rollback();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	// 4. Connection 객체를 반납해주는 메소드
-	
+	public static void close(Connection conn) {
+		
+		try {
+			if(conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	// 5. Statement 객체를 반납시켜주는 메소드
-	
+	public static void close(Statement stmt) { // 다형성+오버로딩
+		
+		try {
+			if(stmt != null && !stmt.isClosed()) {
+				stmt.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}	
 	// 6. ResultSet객체를 반납시켜주는 메소드
-	
+	public static void close(ResultSet rset) {
+		
+		try {
+			if(rset != null && !rset.isClosed()) {
+				rset.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}	
 	
 	
 	

@@ -59,6 +59,13 @@
 		background: darkgray;
 	}
 	
+	.outer{
+		background : black;
+		color: white;
+		width: 1000px;
+		margin: auto;
+		margin-top: 50px;
+	}
 </style>
 </head>
 <body>
@@ -102,6 +109,7 @@
 			function enrollPage(){
 				// location.href = "<%= contextPath %>/views/member/memberEnrollForm.jsp";
 				// 웹 애플리케이션의 디렉토리 구조가 url에 노출되면 보안에 취약
+				// 주석 잘 처리된것임
 				
 				// 단순한 정적인 페이지 이동요청이라고해도 반드시 servlet을 거쳐갈것 => url에 서블릿 매핑값만 노출되도록 하기
 				location.href = "<%= contextPath %>/enrollForm.me";
@@ -131,39 +139,6 @@
 		<div class="menu"><a href="<%= contextPath %>/list.bo?currentPage=1">일반게시판</a></div>
 		<div class="menu"><a href="<%= contextPath %>/list.th">사진게시판</a></div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </body>
 </html>

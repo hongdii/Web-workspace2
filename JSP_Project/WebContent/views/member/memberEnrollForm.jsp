@@ -6,13 +6,6 @@
 <meta charset="UTF-8">
 <title>회원가입 폼</title>
 <style>
-	.outer{
-		background: black;
-		color: white;
-		width:1000px;
-		margin: auto;
-		margin-top: 50px;
-	}
 	#enroll-form table{margin:auto;}
 	#enroll-form input{margin:5px;}
 	
@@ -24,7 +17,7 @@
 	<div class="outer">
 		<br>
 		<h2 align="center">회원가입</h2>
-		<form id="enroll-form" actoin="<%= contextPath %>/insert.me" method="post">
+		<form id="enroll-form" action="<%= contextPath %>/insert.me" method="post">
 	  	<!-- 아이디, 비밀번호, 이름, 전화번호, 이메일, 주소, 취미 -->
             <table>
                 <!-- (tr>td*3)*8 -->
