@@ -116,7 +116,7 @@
 				<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updatePwdForm">비밀번호 변경</button>
 				<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteForm">회원탈퇴</button>
 			</div>
-		</form>	
+			
 		<!-- Modal -->
 		<div class="modal" id="deleteForm">
 			<div class="modal-dialog">
@@ -193,7 +193,7 @@
 		</div>
 		
 		
-		
+		</form>
 	</div>
 	
 </body>
