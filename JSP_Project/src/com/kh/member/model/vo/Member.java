@@ -3,34 +3,22 @@ package com.kh.member.model.vo;
 import java.sql.Date;
 
 public class Member {
-//	USER_NO
-//	USER_ID
-//	USER_PWD
-//	USER_NAME
-//	PHONE
-//	EMAIL
-//	ADDRESS
-//	INTEREST
-//	ENROLL_DATE
-//	MODIFY_DATE
-//	STATUS
-	private int userNo; 
-	private String userId;
-	private String userPwd;
-	private String userName;
-	private String phone;
-	private String email;
-	private String address;
-	private String interest;
-	private Date enrollDate;
-	private Date modifyDate;
-	private String status;
-
+	private int	userNo;								//	USER_NO
+	private String userId;							//	USER_ID
+	private String userPwd;							//	USER_PWD
+	private String userName;						//	USER_NAME
+	private String phone;							//	PHONE
+	private String email;							//	EMAIL
+	private String address;							//	ADDRESS
+	private String interest;						//	INTEREST
+	private Date enrollDate;						//	ENROLL_DATE
+	private Date modifyDate;						//	MODIFY_DATE
+	private String status;							//	STATUS
+	
 	public Member() {
 		super();
-		
 	}
-
+	
 	/* 로그인 완료후 멤버테이블에서 조회된 모든 필드를 넣어줄 생성자 */
 	public Member(int userNo, String userId, String userPwd, String userName, String phone, String email,
 			String address, String interest, Date enrollDate, Date modifyDate, String status) {
@@ -47,7 +35,6 @@ public class Member {
 		this.modifyDate = modifyDate;
 		this.status = status;
 	}
-
 	
 	public Member(String userId, String userPwd, String userName, String phone, String email, String address,
 			String interest) {
@@ -60,7 +47,7 @@ public class Member {
 		this.address = address;
 		this.interest = interest;
 	}
-
+	
 	public Member(String userId, String userName, String phone, String email, String address, String interest) {
 		super();
 		this.userId = userId;
@@ -74,7 +61,6 @@ public class Member {
 	public int getUserNo() {
 		return userNo;
 	}
-	
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
@@ -138,12 +124,13 @@ public class Member {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
 				+ ", phone=" + phone + ", email=" + email + ", address=" + address + ", interest=" + interest
 				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
 	}
-
+	
+	
 }

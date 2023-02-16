@@ -11,10 +11,11 @@
 	#mypage-form input{margin:5px;}
 	
 	.modal {color:black;}
+	
 </style>
 </head>
 <body>
-	
+
 	<%@ include file="../common/menubar.jsp" %>
 	
 	<%
@@ -37,7 +38,7 @@
                     <td>* 아이디</td>
                     <td><input type="text" name="userId" maxlength="12" required readonly value="<%= userId %>"></td>
                     <td></td>
-                </tr>
+                </tr>               
                 <tr>
                     <td>* 이름</td>
                     <td><input type="text" name="userName" maxlength="6" required value="<%= userName %>"></td>
@@ -45,7 +46,7 @@
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;전화번호</td>
-                    <td><input type="text" name="phone" placeholder="- 포함해서 입력" value="<%= phone == null ? "" : phone %>"><td>
+                    <td><input type="text" name="phone" placeholder="- 포함해서 입력" value="<%= phone == null ? "" : phone  %>"><td>
                     <td></td>
                 </tr>
                 <tr>
@@ -55,7 +56,7 @@
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;주소</td>
-                    <td><input type="text" name="address" value="<%= address == null ? "":address %>" ></td>
+                    <td><input type="text" name="address" value="<%= address == null ? "" : address %>"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -63,7 +64,11 @@
                     <td colspan="2">
                         <!-- (input[type=checkbox name=interest id= value=]+label)*6 -->
 
-                        <input type="checkbox" name="interest" id="sports" value="운동">
+                        <input type="checkbox" name="interest" id="sports" value="운동" 
+                        <% if(interest.indexOf("운동") > -1){ %>
+                        	checked="checked"
+                        <% } %>
+                         >
                         <label for="sports">운동</label>
 
                         <input type="checkbox" name="interest" id="hiking" value="등산">
@@ -88,113 +93,153 @@
             
             <script>
             	$(function(){
-            		// 삼항연산자
-            		// 변수명 비교연산자 조건 ? 조건이 참일때 반환값 : 조건이 거짓일때 반환값
-            		let interest = "<%= interest == null ? "" : interest%>";
+            		let interest = "<%= interest == null ? "" : interest %>";
             		// "" / "운동,등산,게임"
             		
             		$("input[name='interest']").each( function(){
             			
-            			// 순차적으로 접근한 input 요소의 value값을 가져와서 interest 변수 안에 value값이 포함되어있는지 확인
-            			// 포함되어있다면 현재 접근한 input요소의 checked 속성을 부여.
-            			if( interest.search($(this).val()) >= 0 ){ // interest 문자열로부터 현재 체크박스의 value가 포함되어있는지 확인
-            				// search() -> 매개변수의 값이 변수안에 포함되면 0 이상의 인덱스 반환
-            				// 포함되지 않는다면 인덱스가 -1로 반환
-            				
-            				// attr() : 요소(element)의 속성(attribute)의 값을 가져오거나 속성을 추가
-            				$(this).attr("checked", true);
-            			}
-            			
-            		} );
+            			// 순차적으로 접근한 input 요소의 value값을 가져와서 interest변수 안에 value값이 포함되어있는지 확인
+            			// 포함되어있따면 현재 접근한 input요소의 checked속성을 부여.
+            			if( interest.search($(this).val()) >= 0  ){ // interest문자열로부터 현재 체크박스의 value가 포함되어있는지 확인
+            				$(this).attr("checked",true);
+            			}            			
+            		});
             	});
             </script>
-			
-			<br><br>
-			
-			<div align="center">
-				<button type="submit" class="btn btn-secondary btn-sm">정보변경</button>
-				<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updatePwdForm">비밀번호 변경</button>
-				<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteForm">회원탈퇴</button>
-			</div>
-		</form>	
-		<!-- Modal -->
-		<div class="modal" id="deleteForm">
-			<div class="modal-dialog">
-				<div class="modal-content">
+            
+            <br><br>
+            
+            <div align="center">
+            	<button type="submit" class="btn btn-secondary btn-sm">정보변경</button>
+            	<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updatePwdForm">비밀번호 변경</button>
+            	<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteForm">회원탈퇴</button>
+            </div>
+		</form>
+	
+	
+	<!--  Modal  -->
+	<div class="modal" id="deleteForm">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				
+				<!--  모달 해더 -->
+				<div class="modal-header">
+					<h4 class="modal-title">회원탈퇴</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				
+				<!--  모달 바디 -->
+				<div class="modal-body" align="center">
+				
+				<form action="<%=contextPath %>/delete.me" method="post" >
+					<table>
+						<tr>
+							<td>비밀번호</td>
+							<td><input type="password" name="userPwd" required></td>
+						</tr>
+					</table>
+					<br>
 					
-					<!-- 모달 헤더 -->
-					<div class="modal-header">
-						<h4 class="modal-title">회원탈퇴</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-					
-					<!-- 모달 바디 -->
-					<div class="modal-body">
-						<form action="<%= contextPath%>/delete.me" method="post">
-							<table>
-								<tr>
-									<td>비밀번호</td>
-									<td><input type="password" name="userPwd" required></td>
-								</tr>
-							</table>
-							<br>
-							
-							<button type="submit" class="btn btn-danger btn-sm">탈퇴하기</button>
-						</form>
-					</div>
+					<button type="submit" class="btn btn-danger btn-sm">탈퇴하기</button>
+				</form>
 				</div>
 			</div>
 		</div>
-		
-		<div class="modal" id="updatePwdForm">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					
-					<!-- 모달 헤더 -->
-					<div class="modal-header">
-						<h4 class="modal-title">비밀번호 변경</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-					
-					<!-- 모달 바디 -->
-					<div class="modal-body">
-						<form action="<%= contextPath %>/updatePwd.me" method="post">
-							<table>
-								<tr>
-									<td>현재 비밀번호</td>
-									<td><input type="password" name="userPwd" required></td>
-								</tr>
-								<tr>
-									<td>변경할 비밀번호</td>
-									<td><input type="password" name="updatePwd" required></td>
-								</tr>
-								<tr>
-									<td>변경할 비밀번호 확인</td>
-									<td><input type="password" name="checkPwd" required></td>
-								</tr>
-							</table>
-							<br>
-							
-							<button type="submit" class="btn btn-secondary btn-sm" onclick="return validate();">비밀번호 변경</button>
-						
-							<script>
-								function validate(){
-									if($("input[name='updatePwd']").val() != $("input[name='checkPwd']").val()){
-										alert("비밀번호가 일치하지 않습니다.");
-										
-										return false;
-									}
-								}
-							</script>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		
-		
 	</div>
 	
+	
+	
+	
+	
+	
+	<div class="modal" id="updatePwdForm">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				
+				<!--  모달 해더 -->
+				<div class="modal-header">
+					<h4 class="modal-title">비밀번호 변경</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				
+				<!--  모달 바디 -->
+				<div class="modal-body" align="center">
+				
+				<form action="<%=contextPath %>/updatePwd.me" method="post" >
+					<table>
+						<tr>
+							<td>현재 비밀번호</td>
+							<td><input type="password" name="userPwd" required></td>
+						</tr>
+						<tr>
+							<td>변경할 비밀번호</td>
+							<td><input type="password" name="updatePwd" required></td>
+						</tr>
+						<tr>
+							<td>변경할 비밀번호 확인</td>
+							<td><input type="password" name="checkPwd" required></td>
+						</tr>
+					</table>
+					<br>					
+					<button type="submit" class="btn btn-secondary btn-sm" onclick="return validate(); ">비밀번호 변경</button>
+					
+					<script>
+						function validate(){
+							if($("input[name='updatePwd']").val() != $("input[name='checkPwd']").val()){
+								alert("비밀번호가 일치하지 않습니다");
+								
+								return false;
+							}
+						}
+					</script>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

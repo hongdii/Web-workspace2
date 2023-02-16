@@ -1,0 +1,34 @@
+<%@page import="com.kh.notice.model.vo.Notice"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	Notice n = (Notice) request.getAttribute("n");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#update-form>table {border:1px solid white;}
+	#update-form input, #update-form textarea{
+		width: 100%;
+		box-sizing: border-box;
+	}
+</style>
+</head>
+<body>
+	<%@ include file="../common/menubar.jsp" %>
+	<div class="outer">
+		<br>
+		<h2 align="center">공지사항 수정</h2>
+		<br>
+		
+		<form id="update-form" action="<%=contextPath %>/update.no" method="post">
+			<input type="hidden" name="nno" value="">
+			
+		</form>
+	</div>
+	
+</body>
+</html>

@@ -16,9 +16,9 @@ import com.kh.member.model.vo.Member;
 public class MemberDao {
 	
 	private Properties prop = new Properties();
-	// member-mapper.xml의 정보를 저장하기위해 프로펄티스객체 만들어줌.
 	
 	public MemberDao() {
+		
 		String fileName = MemberDao.class.getResource("/sql/member/member-mapper.xml").getPath();
 		
 		try {
@@ -26,26 +26,24 @@ public class MemberDao {
 		} catch (InvalidPropertiesFormatException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	
 	public Member loginMember(Connection conn, String userId, String userPwd) {
 		
-		// Select문 => ResultSet 객체(조회된 행은 1개이거나 없거나)
+		// Select문 => ResultSet객체(조회된 행은 1개이거나 없거나)
 		Member m = null;
 		
-		//connection -> resultset -> PreparedStatement 객체 순 실행
-		ResultSet rset = null;
+		ResultSet rset= null;
 		
 		PreparedStatement pstmt = null;
-		// sql문을 실행하는 객체는 PreparedStatement와 다른것 두개있음
 		
 		String sql = prop.getProperty("loginMember");
+		
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -53,27 +51,25 @@ public class MemberDao {
 			pstmt.setString(1, userId);
 			pstmt.setString(2, userPwd);
 			
-			rset = pstmt.executeQuery(); // select문이기때문에 executeQuery() 사용
+			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				m = new Member(rset.getInt("USER_NO"),
-								rset.getString("USER_ID"),
-								rset.getString("USER_PWD"),
-								rset.getString("USER_NAME"),
-								rset.getString("PHONE"),
-								rset.getString("EMAIL"),
-								rset.getString("ADDRESS"),
-								rset.getString("INTEREST"),
-								rset.getDate("ENROLL_DATE"),
-								rset.getDate("MODIFY_DATE"),
-								rset.getString("STATUS"));
-				
-				rset.getInt("USER_NO"); // 매개변수로 컬럼명이나 컬럼인덱스 사용
+						       rset.getString("USER_ID"),
+						       rset.getString("USER_PWD"),
+						       rset.getString("USER_NAME"),
+						       rset.getString("PHONE"),
+						       rset.getString("EMAIL"),
+						       rset.getString("ADDRESS"),
+						       rset.getString("INTEREST"),
+						       rset.getDate("ENROLL_DATE"),
+						       rset.getDate("MODIFY_DATE"),
+						       rset.getString("STATUS"));
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally { // 자원 반납
+		} finally {
 			try {
 				rset.close();
 				pstmt.close();
@@ -81,16 +77,17 @@ public class MemberDao {
 				e.printStackTrace();
 			}
 		}
-		return m;
+		
+		return m;		
 	}
 	
 	public int insertMember(Connection conn, Member m) {
-		// Insert문 => 처리된 행의 갯수를 반환
+		//Insert문 => 처리된 행의 갯수
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("insertMember"); 
+		String sql = prop.getProperty("insertMember");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -107,10 +104,9 @@ public class MemberDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(pstmt);
 		}
-		
 		return result;
 	}
 	
@@ -123,6 +119,7 @@ public class MemberDao {
 		
 		String sql = prop.getProperty("updateMember");
 		
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -132,7 +129,6 @@ public class MemberDao {
 			pstmt.setString(4, m.getAddress());
 			pstmt.setString(5, m.getInterest());
 			pstmt.setString(6, m.getUserId());
-			// shift : 드래그		shift+ct : 대문자단위 드래그
 			
 			result = pstmt.executeUpdate();
 			
@@ -143,18 +139,17 @@ public class MemberDao {
 		}
 		
 		return result;
-		
 	}
 	
 	public Member selectMember(Connection conn, String userId) {
 		
-		// Select문 => ResultSet객체 (id값은 unique 제약조건 걸려있어서 한행만 조회)
+		// Select문 => ResultSet객체 (id값은 unique제약조건이 걸려있어서 한행만 조회)
 		
 		Member m = null;
 		
 		PreparedStatement pstmt = null;
 		
-		ResultSet rset = null;
+		ResultSet rset =null;
 		
 		String sql = prop.getProperty("selectMember");
 		
@@ -167,45 +162,84 @@ public class MemberDao {
 			
 			if(rset.next()) {
 				m = new Member(rset.getInt("USER_NO"),
-						rset.getString("USER_ID"),
-						rset.getString("USER_PWD"),
-						rset.getString("USER_NAME"),
-						rset.getString("PHONE"),
-						rset.getString("EMAIL"),
-						rset.getString("ADDRESS"),
-						rset.getString("INTEREST"),
-						rset.getDate("ENROLL_DATE"),
-						rset.getDate("MODIFY_DATE"),
-						rset.getString("STATUS"));
+					       rset.getString("USER_ID"),
+					       rset.getString("USER_PWD"),
+					       rset.getString("USER_NAME"),
+					       rset.getString("PHONE"),
+					       rset.getString("EMAIL"),
+					       rset.getString("ADDRESS"),
+					       rset.getString("INTEREST"),
+					       rset.getDate("ENROLL_DATE"),
+					       rset.getDate("MODIFY_DATE"),
+					       rset.getString("STATUS"));
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// 생성된 순서의 역순으로 닫아주기
+			//생성된 순서의 역순으로 닫아주기
 			JDBCTemplate.close(rset);
-			JDBCTemplate.close(conn);
+			JDBCTemplate.close(pstmt);
 		}
+		
+		
 		
 		return m;
 	}
 	
+	public int updatePwdMember(Connection conn, String userId, String userPwd, String updatePwd) {
+		
+		// UPDATE문= > 처리된 행의 갯수
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updatePwdMember");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, updatePwd);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, userPwd);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public int deleteMember(Connection conn, String userId, String userPwd) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	
