@@ -32,12 +32,13 @@ public class NoticeUpdateFormController extends HttpServlet {
 		
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		
+		
 		Notice n = new NoticeService().selectNotice(nno);
 		
 		request.setAttribute("n", n);
 		request.getRequestDispatcher("views/notice/noticeUpdateForm.jsp").forward(request, response);
 	
-		
+	
 	}
 
 	/**

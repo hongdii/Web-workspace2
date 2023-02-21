@@ -1,0 +1,5 @@
+package sql.board.vo;
+
+public class Category {
+
+}

@@ -1,0 +1,26 @@
+<%@page import="java.util.ArrayList, com.kh.board.model.vo.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+ 
+<% 
+	ArrayList<Category> list = (ArrayList<Category>) request.getAttribute("list");
+    Board b = (Board) request.getAttribute("b");
+    Attachment at = (Attachment) request.getAttribute("at");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#update-form>table{border:1px solid white}
+	#update-form input , #update-form textarea{
+		width: 100%;
+		box-sizing: border-box;
+	}
+</style>
+</head>
+<body>
+
+</body>
+</html>

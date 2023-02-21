@@ -77,11 +77,13 @@ public class NoticeDao {
 	}
 	
 	public int increaseCount(Connection conn, int nno) {
+		
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
 		
 		String sql = prop.getProperty("increaseCount");
+		
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -89,6 +91,8 @@ public class NoticeDao {
 			pstmt.setInt(1, nno);
 			
 			result = pstmt.executeUpdate();
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -98,9 +102,10 @@ public class NoticeDao {
 		return result;
 	}
 	
+	
 	public Notice selectNotice(Connection conn, int nno) {
 		
-		// select -> Result객체 => 1개의 행만 조회
+		// select - > Result객체 => 1개의 행만 조회
 		Notice n = null;
 		
 		PreparedStatement pstmt = null;
@@ -115,7 +120,7 @@ public class NoticeDao {
 			pstmt.setInt(1, nno);
 			
 			rset = pstmt.executeQuery();
-		
+			
 			if(rset.next()) {
 				n = new Notice(
 						rset.getInt("NOTICE_NO"),
@@ -126,15 +131,19 @@ public class NoticeDao {
 						);
 			}
 			
+			
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
 		
+		
 		return n;
+		
+		
 	}
 	
 	public int insertNotice(Connection conn, Notice n) {
@@ -147,16 +156,15 @@ public class NoticeDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
 			pstmt.setString(1, n.getNoticeTitle());
 			pstmt.setString(2, n.getNoticeContent());
-			
-			pstmt.setInt(3, Integer.parseInt( n.getNoticeWriter() ));
+			pstmt.setInt(3, Integer.parseInt(n.getNoticeWriter()) );
 			
 			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 		}
 		return result;
@@ -165,15 +173,16 @@ public class NoticeDao {
 	public int selectNoticeNo(Connection conn) {
 		
 		int noticeNo = 0;
-		PreparedStatement pstmt =  null;
+		
+		PreparedStatement pstmt = null;
 		
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectNoticeNo");
-	
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
-		
+			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -187,8 +196,79 @@ public class NoticeDao {
 			close(pstmt);
 		}
 		
+		
 		return noticeNo;
 	}
+	
+	
+	public int updateNotice(Connection conn, Notice n ) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeContent());
+			pstmt.setInt(3, n.getNoticeNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+		
+	}
+	
+	public int deleteNotice(Connection conn, int noticeNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

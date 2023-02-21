@@ -1,4 +1,4 @@
-<%@page import="com.kh.notice.model.vo.Notice"%>
+<%@ page import="com.kh.notice.model.vo.Notice" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -10,23 +10,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	#update-form>table {border:1px solid white;}
+	#update-form>table{border : 1px solid white;}
 	#update-form input, #update-form textarea{
-		width: 100%;
-		box-sizing: border-box;
+		width : 100%;
+		box-sizing : border-box;
 	}
 </style>
 </head>
 <body>
-	<!-- 파일 불러오기 include시 무조건 절대경로로 써주기 -->
-	<!-- 현재는 상대경로 -->
 	<%@ include file="../common/menubar.jsp" %>
 	<div class="outer">
 		<br>
 		<h2 align="center">공지사항 수정</h2>
 		<br>
 		
-		<form id="update-form" action="<%=contextPath %>/update.no" method="post">
+		<form id="update-form" action="<%= contextPath %>/update.no" method="post">
 			<input type="hidden" name="nno" value="<%= n.getNoticeNo() %>">
 			<table align="center">
 				<tr>
@@ -40,7 +38,7 @@
 				
 				<tr>
 					<td colspan="2">
-						<textarea name="content" rows="10" style="resize:none" required value="<%= n.getNoticeContent() %>"></textarea>
+						<textarea name="content" rows="10" style="resize:none" required><%=n.getNoticeContent() %></textarea>
 					</td>
 				</tr>
 			</table>
@@ -51,5 +49,7 @@
 			</div>
 		</form>
 	</div>
+	
+	
 </body>
 </html>

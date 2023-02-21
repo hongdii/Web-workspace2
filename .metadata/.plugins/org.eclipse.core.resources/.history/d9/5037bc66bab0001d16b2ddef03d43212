@@ -1,0 +1,18 @@
+package com.kh.board.model.vo;
+
+public class Category {
+	private int categoryNo;
+	private String categoryName;
+	
+	public Category() {
+		
+	}
+
+	public Category(int categoryNo, String categoryName) {
+		super();
+		this.categoryNo = categoryNo;
+		this.categoryName = categoryName;
+	}
+	
+	
+}

@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="updatePwd.me"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="&lt;option value=&quot;10&quot;&gt;공통&lt;/option&gt;"/>
+			<item value="FILE_NO"/>
+			<item value="request.setCharacterEncoding(&quot;UTF-8&quot;);"/>
+			<item value="public Notice(int noticeNo, String noticeTitle, String noticeContent, String noticeWriter) {"/>
 			<item value="updatePwd.me"/>
 			<item value="Servlet.service()"/>
 			<item value="Servlet"/>

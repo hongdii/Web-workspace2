@@ -133,3 +133,4 @@
 0:0:0:0:0:0:0:1 - - [16/Feb/2023:14:52:27 +0900] "GET /jspproject/detail.no?nno=12 HTTP/1.1" 200 3525
 0:0:0:0:0:0:0:1 - - [16/Feb/2023:14:52:28 +0900] "GET /jspproject/updateForm.no?nno=12 HTTP/1.1" 200 3654
 0:0:0:0:0:0:0:1 - - [16/Feb/2023:14:52:35 +0900] "POST /jspproject/update.no HTTP/1.1" 404 831
+0:0:0:0:0:0:0:1 - - [16/Feb/2023:15:01:53 +0900] "POST /jspproject/update.no HTTP/1.1" 404 831

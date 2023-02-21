@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기본선택자</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <!-- 위 스크립트 태그는 각 문서마다 추가되어야함 -->
+</head>
+<body>
+    <h1>기본 선택자</h1>
+    <h3>* 아이디 선택자</h3>
+    <p>
+        특정 고유한 아이디값을 가진 요소 하나만 선택하고자 할때
+    </p>
+    <script>
+        $(document).ready(function(){
+            // 순수 자바스크립트 방식 => document.getElementById("아이디명");
+                                    //    document.querySelector("#아이디명");
+            // 선택된 요소 객체의 속성에 접근해서 값을 변경
+            document.getElementById("id1").style.color = "red";
+            document.querySelector("#id2").innerHTML = "h1으로 변경";
+
+            // jQuery 방식 => $("#아이디명")
+            // 선택된 요소 객체에 메소드를 이용해서 값을 변경
+            $("#id1").css("color","pink");
+            $("#id2").html("제이쿼리방식으로 변경");
+            // .html() : 선택된 요소의 innerHTML과 관련된 기능을 수행하는 메소드
+
+        });
+    </script>
+    <h1 id="id1">ID1</h1>
+    <h2 id="id2">ID2</h2>
+
+    <hr>
+
+    <h3>* 태그 선택자</h3>
+
+    <p>JAVA</p>
+    <p>ORACLE</p>
+    <p>JDBC</p>
+    <p>HTML</p>
+    <p>CSS</p>
+    <p>JAVASCRIPT</p>
+
+    <script>
+        $(function(){
+            // 순수 자바스크립트 방식 => document.getElementsByTagName("태그명");
+            let p = document.getElementsByTagName("p") // [p,p,p ...]
+            // p.style.color = "pink"; // p는 배열이라 style속성이 바로 적용되지 않는다.
+            for(let i=0 ; i<p.length ; i++){
+                p[i].style.color = "red";
+            }
+
+            // jQuery 방식 => $("태그명")
+            $("p").css("color","blue");
+
+            // 여러종류의 태그들을 동시에 선택하고자할때? p, h1, #id1
+            $("p, #id1, h1").css("background", "pink");
+        });
+    </script>
+
+    <hr>
+
+    <h3>* 클래스선택자</h3>
+    <p>
+        특정한 클래스 속성을 가진 요소들을 선택하고자 할때 사용
+    </p>
+
+    <!-- h1.item.select{Class$}*3 -->
+    <h1 class="item">Class1</h1>
+    <h1 class="item select">Class2</h1>
+    <h1 class="item select">Class3</h1>
+
+    <script>
+        $(function(){
+            // 순수 자바스크립트 방식 => document.getElementsByClaasMame("클래스명")
+                                                // .querySelector("클래스명");
+            let items = document.getElementsByClassName("item");
+            for(let item of items){
+                item.style.color = "orange";
+                item.onclick = function() {
+                    console.log("클릭됨");
+                }
+            }
+
+            // jQuery 방식 => $(".클래스명")
+            // $(".select").css("background", "lightgray");
+            // $(".select").click(function(){
+            //     alert("제이쿼리방식");
+            // });
+
+            $(".select").css("background", "lightgray").click(function(){
+            // jQuery리턴값==jQuery객체.ㄴ 따라서 메서드체이닝 가능
+                alert("제이쿼리방식");
+            });
+            // .click() : 클릭 이벤트와 관련된 기능 수행
+        })
+    </script>
+</body>
+</html>
