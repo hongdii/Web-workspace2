@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.Category;
 import com.kh.common.MyFileRenamePolicy;
 import com.kh.member.model.vo.Member;
 import com.oreilly.servlet.MultipartRequest;
@@ -39,8 +42,20 @@ public class BoardUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 필요한 데이터를 담아서 boardUpdateForm.jsp로 포워딩 시켜주기
+//		// 필요한 데이터를 담아서 boardUpdateForm.jsp로 포워딩 시켜주기
+		BoardService bService = new BoardService();
 		
+		int boardNo = Integer.parseInt(request.getParameter("bno"));
+		
+		ArrayList<Category> list = bService.selectCategoryList();
+		Board b = bService.selectBoard(boardNo);
+		Attachment at = bService.selectAttachment(boardNo);
+		
+		request.setAttribute("list", list);
+		request.setAttribute("at", at);
+		request.setAttribute("b", b);
+		
+		request.getRequestDispatcher("views/board/boardUpdateForm.jsp").forward(request, response);
 	}
 
 	/**
@@ -57,24 +72,23 @@ public class BoardUpdateController extends HttpServlet {
 			int maxSize = 1024 * 1024 * 10;
 			
 			// 1_2. 전달된 파일을 저장시킬 서버의 폴더의 물리적인 경로 알아내기
-			String savepath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
 			
 			// 2. 전달된 파일명 수정 작업후 서버에 업로드
-			MultipartRequest multi = new MultipartRequest(request, savepath, maxSize, "UTF-8", new MyFileRenamePolicy());
+			MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
 			// 3. 본격적으로 sql문 실행시 필요한 값들 세팅
+			// - Board테이블에 Update시 필요한 값들 세팅
+			int boardNo = Integer.parseInt(multi.getParameter("bno").trim());
 			String category = multi.getParameter("category");
 			String title = multi.getParameter("title");
 			String content = multi.getParameter("content");
-			
-			String boardWriter = ((Member) request.getSession().getAttribute("loginUser")).getUserNo()+"";
-			
+				
 			Board b = new Board();
 			b.setCategory(category);
 			b.setBoardTitle(title);
 			b.setBoardContent(content);
-			b.setBoardWriter(boardWriter);
-
+			b.setBoardNo(boardNo);
 			
 			// 새롭게 전달된 첨부파일이 있는경우에만 at변수에 필요한 값을 추가할것
 			Attachment at = null;
@@ -94,7 +108,7 @@ public class BoardUpdateController extends HttpServlet {
 					at.setFileNo( Integer.parseInt(multi.getParameter("originFileNo") ) );
 					
 					// 기존의 첨부파일을 삭제
-					new File(savepath + multi.getParameter("changeFileName")).delete();
+					new File(savePath + multi.getParameter("changeFileName")).delete();
 					
 				}else {
 					// 기존에 첨부파일이 없는 경우
@@ -106,6 +120,7 @@ public class BoardUpdateController extends HttpServlet {
 			}
 			
 			// 하나의 트랜잭션으로 board에 update문과 Attachment테이블의 insert, update 동시에 처리해주기
+			int result = new BoardService().updateBoard(b, at);
 			
 			// 항상 board에 update문은 반드시 실행시켜줘야함.
 			// case1 : 새로운 첨부파일이 없는경우(x) -> insert (x) , update(x)
@@ -114,38 +129,18 @@ public class BoardUpdateController extends HttpServlet {
 			
 			
 			// 수정 성공시 : 상세조회페이지로 redirect
-			
-			// 수정 실패시 : errorPage
-			
-			if() {
-				
-			} else {
-				request.setAttribute("errorMsg", "수정을 실패하셨습니다.");
+			if(result>0) {
+				request.getSession().setAttribute("alertMsg", "성공적으로 수정되었습니다.");
+				response.sendRedirect(request.getContextPath()+"/detail.bo?bno="+boardNo);
+			} else { // 수정 실패시 : errorPage
+				request.setAttribute("errorMsg", "게시글 수정에 실패하셨습니다.");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-
 			}
-			
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			
-			try {
-				pstmt.executeQuery("updateBoard");
-				
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 			
 		}else {
 			request.setAttribute("errorMsg", "전송방식이 잘못되었습니다.");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		
-		
-		
-		
 		
 	}
 

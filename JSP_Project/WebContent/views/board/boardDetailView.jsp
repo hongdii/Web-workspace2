@@ -68,9 +68,22 @@
 			<!-- 로그인한 사용자가 해당 게시글의 작성자인 경우 -->
 			<% if(loginUser != null && loginUser.getUserId().equals(b.getBoardWriter())) { %>
 				<a href="<%= contextPath %>/update.bo?bno=<%= b.getBoardNo() %>" class="btn btn-warning btn-sm">수정하기</a>
-				<a href="<%= contextPath %>/delete.bo?bno=<%= b.getBoardNo() %>" class="btn btn-danger btn-sm">삭제하기</a>
+				<button onclick="deleteBoard();" class="btn btn-danger btn-sm">삭제하기</button>
+				
 			<% } %>
 		</div>
+		
+		<script>
+			function deleteBoard(){
+// 				confirm함수 이용해서 alert창 이용
+// 				alert창에서 취소버튼을 누르면 창을 빠져나갈수있게 논리부정연산자를 confirm함수 앞에
+// 				붙여줌				
+				if(!confirm("정말 삭제하시겠습니까?")){
+					return;
+				}
+				location.href = "<%= contextPath %>/delete.bo?bno=<%= b.getBoardNo() %>";
+			}
+		</script>
 		
 		<br>
 		<!-- 댓글기능 화면구현만 해두기 . 요 아래는 작업x -->

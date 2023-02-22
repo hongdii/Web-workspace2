@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시각적인효과메소드2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+        div {
+            background: beige;
+            width: 320px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 10px;
+            border: 1px solid yellow;
+            cursor: pointer;
+        }
+        p {
+            border: 1px solid lightgray;
+            width: 300px;
+            height: 100px;
+            margin-top: 5px;
+            border-radius: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h3>* slideDown(), slideUp() : 홈페이지의 FAQ에서 자주 사용됨</h3>
+
+    <div>Q. 반품은 언제까지 되나요?</div>
+    <p>A. 구매후 1주일 이내까지 가능합니다</p>
+
+    <div>Q. 상품 위치를 알고 싶습니다</div>
+    <p>A. 배송 조회를 해보세요</p>
+
+    <div>Q. 이 사이즈 있나요?</div>
+    <p>A. 네 있습니다</p>
+
+    <div>Q. 전화 통화 가능한 시간을 알려주세요</div>
+    <p>A. 플러스친구 카톡을 활용하시면 24시간내에 답변드리겠습니다</p>
+
+    <div>Q. 판매자와 연락이 안되면 어떻게 하나요?</div>
+    <p>A. 신고하세요</p>
+
+    <script>
+        $(function(){
+            $("div").click(function(){
+                // $(this) : 현재 클릭이벤트가 발생한 요소(div)
+                //$(this).next() : 현재 클릭이벤트가 발생한 요소 바로 뒤에 있는 요소
+                
+                // 제이쿼리 방식으로 선택된 요소를 담아둘때 변수명앞에 $를 붙이곤 함
+                let $p = $(this).next(); 
+
+                if($p.css("display") == "none"){
+                    // css() 메소드에 속성명만 작성시 해당 속성의 속성값을 반환(get/setter 동시에)
+
+                    // 2단계 : 기존에 열려있는 p태그들 모두 닫아주기
+                    $(this).siblings("p").slideUp(); // 닫아주기
+
+                    // 1단계
+                    $p.slideDown(1000); // 시간부여도 가능
+                } else{
+                    // 사라지게끔
+                    $p.slideUp(1000);
+                }
+
+            });
+        });
+    </script>
+</body>
+</html>
