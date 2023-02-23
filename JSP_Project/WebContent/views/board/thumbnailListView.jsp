@@ -1,9 +1,11 @@
+<%@page import="com.kh.board.model.vo.Attachment"%>
 <%@page import="java.util.ArrayList, com.kh.board.model.vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
 	ArrayList<Board> list = (ArrayList<Board>) request.getAttribute("list");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -12,7 +14,8 @@
 <title>Insert title here</title>
 <style>
 	.outer{
-		height: 800px;
+/* 		최소값 높이 800px로 지정. 사진 튀어나오는거 방지  */
+		min-height: 800px;
 	}
 	.list-area{
 		width: 760px;
@@ -33,32 +36,21 @@
 			</div>
 		<% } %>
 		<div class="list-area">
+<!-- 		 리스트목록을 가져오고 -->
+<!-- 		리스트목록 for문을 이용 -->
 			
-			<div class="thumnail" align="center">
-				<input type="hidden" value="1">
-				<img src="<%=contextPath %>/resources/thumb_upfiles/animal1.gif" width="200px" height="150px">
-				<p>
-					NO.1 첫번째글제목<br>
-					조회수 : 1
-				</p>
-			</div>
-			<div class="thumnail" align="center">
-				<input type="hidden" value="2">
-				<img src="<%=contextPath %>/resources/thumb_upfiles/animal2.gif" width="200px" height="150px">
-				<p>
-					NO.2 두번째글제목<br>
-					조회수 : 1
-				</p>
-			</div>
-			
-			<div class="thumnail" align="center">
-				<input type="hidden" value="3">
-				<img src="<%=contextPath %>/resources/thumb_upfiles/animal3.gif" width="200px" height="150px">
-				<p>
-					NO.3 세번째글제목<br>
-					조회수 : 1
-				</p>
-			</div>
+			<% for( Board b : list) {%>
+				<div class="thumnail" align="center">
+					<input type="hidden" value="<%= b.getBoardNo() %>">
+<%-- 					<%= b.setTitleImg(at.getChangeName()+at.getFilePath()) %> --%>
+					<img src="<%=contextPath %>/<%= b.getTitleImg() %>" width="200px" height="150px">
+<!-- 					titleImg -->
+					<p>
+						NO.<%= b.getBoardNo() %> <%= b.getBoardTitle() %><br>
+						조회수 : <%= b.getCount() %>
+					</p>
+				</div>
+			<% } %>
 			
 			
 		</div>

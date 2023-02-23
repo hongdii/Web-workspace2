@@ -173,5 +173,25 @@ public class BoardService {
 		
 		return result1*result2;
 	}
+	
+	public ArrayList<Board> selectThumbList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().selectThumbList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+
+	public ArrayList<Attachment> selectAttachmentList(int boardNo){
+		Connection conn = getConnection();
+		
+		// 커넥션객체 있어야 디비에 접근 가능
+		ArrayList<Attachment> list = new BoardDao().selectAttachmentList(conn, boardNo);
+		
+		return list;
+	}
 
 }
