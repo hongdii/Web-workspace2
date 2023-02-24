@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Array"/>
+		<item key="selection" value="SELECT"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="select"/>
+			<item value="selec"/>
+			<item value="selectAttachment"/>
+			<item value="selectBoard"/>
+			<item value="view"/>
+			<item value="detail"/>
+			<item value="selectThumbList"/>
+			<item value="file"/>
+			<item value="change"/>
+			<item value="titleImg"/>
+			<item value="ON"/>
+			<item value="join"/>
+			<item value="LIST"/>
 			<item value="Array"/>
 			<item value="loadImg"/>
-			<item value="originFileNo"/>
-			<item value="bno"/>
-			<item value="list-area"/>
-			<item value="&lt;option value=&quot;10&quot;&gt;공통&lt;/option&gt;"/>
-			<item value="FILE_NO"/>
-			<item value="request.setCharacterEncoding(&quot;UTF-8&quot;);"/>
-			<item value="public Notice(int noticeNo, String noticeTitle, String noticeContent, String noticeWriter) {"/>
-			<item value="updatePwd.me"/>
-			<item value="Servlet.service()"/>
-			<item value="Servlet"/>
-			<item value="USER_ID"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -30,8 +32,8 @@
 		<item key="DIALOG_Y_ORIGIN" value="398"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="-11"/>
-		<item key="DIALOG_Y_ORIGIN" value="412"/>
+		<item key="DIALOG_X_ORIGIN" value="527"/>
+		<item key="DIALOG_Y_ORIGIN" value="278"/>
 		<item key="DIALOG_WIDTH" value="288"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

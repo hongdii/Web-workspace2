@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;JSP_Project/src/com/kh/common/PasswordEncryFilter.java&apos; to &apos;PasswordEncrytFilter.java&apos;" description="Rename resource &apos;PasswordEncryFilter.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/com/kh/common/PasswordEncryFilter.java" name="PasswordEncrytFilter.java" stamp="1677200582322" updateReferences="true"/>
+</session>

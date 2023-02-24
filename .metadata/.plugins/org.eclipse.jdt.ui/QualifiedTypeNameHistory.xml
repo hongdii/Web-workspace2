@@ -25,12 +25,12 @@
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="com.kh.common.model.vo.PageInfo"/>
-    <fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"/>
     <fullyQualifiedTypeName name="com.kh.common.MyFileRenamePolicy"/>
-    <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
-    <fullyQualifiedTypeName name="com.kh.board.model.vo.Board"/>
     <fullyQualifiedTypeName name="com.kh.member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.kh.board.model.vo.Attachment"/>
     <fullyQualifiedTypeName name="com.kh.board.model.service.BoardService"/>
+    <fullyQualifiedTypeName name="com.kh.board.model.vo.Board"/>
 </qualifiedTypeNameHistroy>

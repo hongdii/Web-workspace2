@@ -1,0 +1,26 @@
+package com.kh.common;
+
+import javax.crypto.SecretKey;
+
+// 양방향 암호화 지원하는 클래스
+// java.api 기본적으로 제공하고 있음
+// javax.crypto, java.security패키지에 구성되어있음
+public class AEScryptor {
+	// 저희만의 key를 만들예정. key는 프로젝트당 한개만 있어야하며, 보안이 굉장히 중요함.
+	
+	private static SecretKey key; // 암호화를 위한 키
+	private String path;	// 파일로 저장된 암호화키의 위치
+	
+	public AEScryptor() {
+		// 클래스가 생성될때 기본설정을 해줘야함.
+		// 1. key파일에 객체가 생성되어있다면 key파일에서 SecretKey객체를 불러오고
+		// 생성되어있지 않다면, SecretKey객체를 생성하여 파일로 저장시킨다.
+		
+		this.path = AEScryptor.class.getResource("/").getPath();
+		
+		
+		
+	}
+	
+	
+}
