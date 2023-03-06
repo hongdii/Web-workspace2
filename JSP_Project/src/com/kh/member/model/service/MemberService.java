@@ -113,9 +113,21 @@ public class MemberService {
 		return result;
 	}
 	
+	public int idCheck(String userId) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		// MemberDao()에서 sql문 실행
+		int result = new MemberDao().idCheck(conn, userId);
+
+		// 트랜잭션 처리 안해도됨
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
 	
-	
-	
+
 	
 	
 	

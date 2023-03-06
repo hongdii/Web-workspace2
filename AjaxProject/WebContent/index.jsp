@@ -114,6 +114,7 @@
 			// url에 데이터 내용을 작성하지 않고, send함수의 매개변수로 작성해야함.
 			// 전송방식도 수정해줘야함.
 			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			// 여러개값 전달하려면 & 붙여서 보내기
 			xhr.send("id=user01");
 		}
 	</script>
@@ -179,8 +180,10 @@
 				// 비동기식 통신 : 페이지 전환이 되지 않는다.
 				$.ajax({
 // 					절대경로로 url 요청
+					// url은 필수로 작성
 					url:'<%= contextPath %>/jqAjax1.do',  
 					type:'get',
+					// 객체로 묶어서 키-밸류 로 전달
 					data : {input : $("#input1").val()},
 					success : function(result){ // 매개변수에는 서블릿으로부터 전달받은 응답데이터가 담겨있다.
 					// xhr.reponseText와 같음
@@ -358,6 +361,7 @@
 	</select>
 	
 	<script>
+	// keyup()을 통해 키보드가 눌릴때마다 url로 비동기요청을 보냄
 		$(function(){
 			$("#keyword").keyup(function(e){
 				$.ajax({
@@ -393,6 +397,8 @@
 	<div id="htmloutput"></div>
 	
 	<script>
+	// 비동기식통신을 활용해서 페이지를 계속 전환하는것이 아니라
+	// 페이지안에서 내용만 변경시켜줌
 		$(function(){
 			$("#htmlAjax").click(function(){
 				
@@ -432,6 +438,7 @@
 		$(function(){
 			$("#xmlTest").click( () => {
 				$.ajax({
+					// 존재하는 파일(css, xml,..) 등은
 					// 아파치가 받아줌
 					url : "books.xml",
 					//data => xml 파일 자체

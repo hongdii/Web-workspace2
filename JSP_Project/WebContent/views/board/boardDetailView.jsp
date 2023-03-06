@@ -4,6 +4,7 @@
 <!-- 컨트롤러에서 넘겨받은 board객체 b를 변수 b에 저장 -->
 <% Board b = (Board) request.getAttribute("b"); 
    Attachment at = (Attachment) request.getAttribute("at");
+   Reply r = (Reply) request.getAttribute("r");
 %>
 <!-- 글번호 카테고리 제목 작성자 조회수 작성일 -->
 <!DOCTYPE html>
@@ -136,6 +137,55 @@
 		
 	</div>
 	
+	<script>
+		function insertReply(){
+			$.ajax({
+				url : "<%=contextPath%>/rinsert.bo",
+				data :{
+					content : $("#replyContent").val(),
+					bno : "<%= b.getBoardNo() %>"
+				},
+				success: function(result){
+// 					 댓글 등록 성공시 result = 1
+					if(result > 0){
+						// 새 댓글 목록 불러오는 함수 호출
+						selectReplyList();
+						
+						// 댓글내용 비워주기
+						$("#replyContent").val("");
+						
+					}else{ // 댓글 등록 실패시 result = 0
+						alert("댓글 작성에 실패했습니다.");
+					}
+				},
+				error: function(){
+					console.log("댓글작성실패");
+				}
+			
+			})
+			
+		}
+		
+		function selectReplyList(){
+			$.ajax({
+				url : "<%= contextPath %>/rlist.bo",
+				data : {bno : "<%= b.getBoardNo() %>"},
+				success : function(list){
+					
+					// 서버로부터 전달받은 리스트를 반복문을 통해 댓글목록으로 변환
+					let result = "";
+					
+					for(let i of result){
+						
+						
+					}
+				},
+				error: function(){
+					console.log("게시글 목록조회 실패");
+				}
+			});
+		}
+	</script>
 	
 	
 </body>

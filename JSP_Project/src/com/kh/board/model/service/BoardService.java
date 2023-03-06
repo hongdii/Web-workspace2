@@ -9,7 +9,10 @@ import com.kh.board.model.dao.BoardDao;
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.Category;
+import com.kh.board.model.vo.Reply;
+import com.kh.common.JDBCTemplate;
 import com.kh.common.model.vo.PageInfo;
+import com.kh.member.model.dao.MemberDao;
 
 public class BoardService {
 	
@@ -192,6 +195,23 @@ public class BoardService {
 		ArrayList<Attachment> list = new BoardDao().selectAttachmentList(conn, boardNo);
 		
 		return list;
+	}
+	
+	public int insertReply(Reply r) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new BoardDao().insertReply(conn, r);
+		
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
 	}
 
 }

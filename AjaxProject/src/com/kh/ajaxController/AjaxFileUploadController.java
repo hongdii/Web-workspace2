@@ -43,6 +43,7 @@ public class AjaxFileUploadController extends HttpServlet {
 		// WebContent/upload/
 		String filePath = request.getServletContext().getRealPath("/upload/");
 		
+		// 전달된 데이터 이용
 		// 웹서버안에 자동저장되게하기위해 MultipartRequest객체 생성
 		// MultipartRequest( MultipartRequest와 연결할 request객체, 
 		// 					서버측에 저장될 경로, 최대 파일 크기, 파일 인코딩 방식, 파일 중복 처리를 위한 매개변수 )

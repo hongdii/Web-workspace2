@@ -7,7 +7,6 @@
     <fullyQualifiedTypeName name="java.beans.Statement"/>
     <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="com.kh.member.model.service.MemberService"/>
     <fullyQualifiedTypeName name="com.kh.common.JDBCTemplate"/>
     <fullyQualifiedTypeName name="com.kh.notice.model.dao.NoticeDao"/>
     <fullyQualifiedTypeName name="com.kh.notice.model.service.NoticeService"/>
@@ -18,18 +17,10 @@
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
     <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.FileRenamePolicy"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="com.kh.common.model.vo.PageInfo"/>
-    <fullyQualifiedTypeName name="com.kh.common.MyFileRenamePolicy"/>
-    <fullyQualifiedTypeName name="com.kh.member.model.vo.Member"/>
     <fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"/>
-    <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.kh.board.model.vo.Attachment"/>
-    <fullyQualifiedTypeName name="com.kh.board.model.service.BoardService"/>
-    <fullyQualifiedTypeName name="com.kh.board.model.vo.Board"/>
     <fullyQualifiedTypeName name="java.security.MessageDigest"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequestWrapper"/>
     <fullyQualifiedTypeName name="com.kh.common.PasswordEncryptWrapper"/>
@@ -51,4 +42,17 @@
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="org.json.simple.JSONArray"/>
     <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.kh.board.model.vo.Board"/>
+    <fullyQualifiedTypeName name="com.google.gson.Gson"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
+    <fullyQualifiedTypeName name="com.kh.common.MyFileRenamePolicy"/>
+    <fullyQualifiedTypeName name="java.util.Enumeration"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="com.kh.member.model.service.MemberService"/>
+    <fullyQualifiedTypeName name="com.kh.member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="com.kh.board.model.service.BoardService"/>
+    <fullyQualifiedTypeName name="com.kh.board.model.vo.Reply"/>
+    <fullyQualifiedTypeName name="com.kh.board.model.vo.ReplyBuilder"/>
 </qualifiedTypeNameHistroy>

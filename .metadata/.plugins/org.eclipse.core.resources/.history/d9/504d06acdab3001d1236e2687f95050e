@@ -1,9 +1,0 @@
-package com.kh.common;
-
-public class PasswordEncryptWrapper extends HttpServletRequestWrapper{
-
-	public PasswordEncryptWrapper(HttpServletRequestWrapper request) {
-		super(request);
-	}
-	
-}
