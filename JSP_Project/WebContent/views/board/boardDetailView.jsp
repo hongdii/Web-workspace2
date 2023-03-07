@@ -1,10 +1,10 @@
-<%@page import="com.kh.board.model.vo.*"%>
+<%@page import="com.kh.board.model.vo.*, java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 컨트롤러에서 넘겨받은 board객체 b를 변수 b에 저장 -->
 <% Board b = (Board) request.getAttribute("b"); 
    Attachment at = (Attachment) request.getAttribute("at");
-   Reply r = (Reply) request.getAttribute("r");
+   ArrayList<Reply> list = (ArrayList<Reply>) request.getAttribute("list");
 %>
 <!-- 글번호 카테고리 제목 작성자 조회수 작성일 -->
 <!DOCTYPE html>
@@ -111,26 +111,13 @@
 					<% } %>
 				</thead>
 				<tbody>
-					<tr>
-						<td>user01</td>
-						<td>테스트 댓글</td>
-						<td>2023-02-20</td>
-					</tr>
-					<tr>
-						<td>user01</td>
-						<td>테스트 댓글</td>
-						<td>2023-02-20</td>
-					</tr>
-					<tr>
-						<td>user01</td>
-						<td>테스트 댓글</td>
-						<td>2023-02-20</td>
-					</tr>
-					<tr>
-						<td>user01</td>
-						<td>테스트 댓글</td>
-						<td>2023-02-20</td>
-					</tr>
+					<% for(Reply r : list) {%>
+						<tr>
+							<td><%= r.getReplyWriter() %></td>
+							<td><%= r.getReplyContent() %></td>
+							<td><%= r.getCreateDate() %></td>
+						</tr>
+					<% } %>
 				</tbody>
 			</table>
 		</div>
@@ -138,6 +125,13 @@
 	</div>
 	
 	<script>
+		$(function(){
+			
+			// window.setInterval()
+			setInterval(selectReplyList, 1000);
+			
+		});
+	
 		function insertReply(){
 			$.ajax({
 				url : "<%=contextPath%>/rinsert.bo",
@@ -170,15 +164,21 @@
 			$.ajax({
 				url : "<%= contextPath %>/rlist.bo",
 				data : {bno : "<%= b.getBoardNo() %>"},
-				success : function(list){
+				success : function(list){ // 배열형태 매개변수받음
 					
 					// 서버로부터 전달받은 리스트를 반복문을 통해 댓글목록으로 변환
 					let result = "";
 					
-					for(let i of result){
-						
-						
+					// list가 배열이라 반복문 사용가능
+					for(let i of list){
+						result += "<tr>"
+									+ "<td>"+ i.replyWriter +"</td>"
+									+ "<td>"+ i.replyContent +"</td>"
+									+ "<td>"+ i.createDate +"</td>"
+								+ "</tr>"
 					}
+					
+					$("#reply-area tbody").html(result);
 				},
 				error: function(){
 					console.log("게시글 목록조회 실패");

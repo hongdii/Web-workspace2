@@ -41,11 +41,15 @@ public class AjaxIdCheckController extends HttpServlet {
 		// 3. 중복된 아이디가 존재하는 케이스 , 존재하지 않는 케이스 별로 데이터 전달
 		// 어떤식으로 데이터전달하고 프론트페이지안에서 사용자가 사용가능한지아닌지 직접기술
 //		if(result>0) {
+			// request.setAttribute()는 비동기 요청에서 사용할수없음
+//			request.setAttribute("error_code", "NNNNN");
+									// 오류코드를 상수화하여 사용
 //			response.getWriter().print("NNNNN");
 //		} else {
 //			response.getWriter().print("NNNNY");
 //		}
-//		
+		
+		// 비동기요청에서는 getWriter()객체와 print()메서드 사용하는것을 알아야함
 		response.getWriter().print(result);
 		
 	

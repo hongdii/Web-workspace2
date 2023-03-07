@@ -33,26 +33,32 @@ public class AjaxReplyInsertController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// ajax에서 건내준 키값으로 파라미터값얻어와야함
 		String content = request.getParameter("content");
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		int userNo = ((Member) request.getSession().getAttribute("loginUser")).getUserNo();
 	
+		// Reply객체로 얻어온값 객체화
 		Reply r = new Reply();
 		r.setReplyContent(content);
 		r.setRefBno(bno);
 		r.setReplyWriter(userNo+"");
 		
-		ReplyBuilder rb = new ReplyBuilder(1).
-				setReplyContent("댓글내용").
-				setRefBno(1).
-				build();
+		// 스프링에서는 필드명그대로 메서드로 사용함 
+		// ex) setReplyContent() -> replyContent()
+		ReplyBuilder rb = new ReplyBuilder.
+								Builder(1).
+								setReplyContent("댓글내용").
+								setRefBno(1).
+								build();
 		
 		// result는 등록된 행의 갯수를 반환받을것임
 		int result = new BoardService().insertReply(r);
 			
 		response.setContentType("text/html; charset=UTF-8");
 		
-		// 1 / 0 전달
+		// 비동기식 전달
+		// 행의수 1 혹은 0 전달
 		response.getWriter().print(result);
 	
 	}

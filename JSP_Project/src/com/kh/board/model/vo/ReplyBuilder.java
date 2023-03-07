@@ -38,6 +38,7 @@ public class ReplyBuilder {
 		super();
 	}
 	
+	// static class 만들어줘야함
 	public static class Builder {
 		// 일반 클래스와 영역이 달라 변수명 같아도 오류안남
 		
@@ -46,7 +47,7 @@ public class ReplyBuilder {
 		private int refBno; // 선택적으로 받아야할 정보
 		
 		// 필수로 받아야할 정보는 생성자로 값을 전달해줌.
-		public Builder(int replyNo) {
+		public Builder(int replyNo) { // 매개변수 갯수는 무관, 그러나 필수 정보만 넣기
 			this.replyNo = replyNo;
 		}
 		
