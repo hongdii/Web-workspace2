@@ -4,6 +4,7 @@ public class Person {
 	private String name;
 	private String gender;
 	private String job;
+	private String testField;
 	
 	public Person() {
 		super();
@@ -41,6 +42,12 @@ public class Person {
 		this.job = job;
 	}
 
+	// 카멀케이스 규칙 지켜야 호출됨.
+	// get set메서드 자동생성 이용
+	public String getTestField() {
+		return this.testField;
+	}
+	
 	@Override
 	public String toString() {
 		return "Person [name=" + name + ", gender=" + gender + ", job=" + job + "]";

@@ -24,7 +24,7 @@
 		10 + 3 = ${big + small } <br>
 		10 - 3 = ${big - small } <br>
 		10 X 3 = ${big * small } <br>
-		<!-- div, mod 는 연산 예약어 -->
+		<!-- DIV(ide), MOD(uler) 는 연산 예약어 -->
 		10 / 3 = ${big / small } 또는 ${big div small }<br>
 		10 % 3 = ${big % small } 또는 ${big mod small }<br>
 	</p>

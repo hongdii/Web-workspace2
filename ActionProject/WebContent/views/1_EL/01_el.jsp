@@ -18,6 +18,7 @@
 		String academy = (String) session.getAttribute("academy");
 		
 	%>
+	<!-- 스클립틀릿도 사용하지만 가급적 EL표현식 활용하기 -->
  	<p>
  		학원명 : <%= academy %> <br>
  		강의장 : <%= classRoom %> <br>

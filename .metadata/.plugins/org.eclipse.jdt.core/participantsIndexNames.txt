@@ -1,6 +1,8 @@
 INDEX VERSION 1.131
 C:\Web-workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1136966443.index
 \CookieProject\src
+C:\Web-workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2022639586.index
+\ActionProject\src
 C:\Web-workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1914631645.index
 \ActionProject\src
 C:\Web-workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3806950446.index
@@ -17,6 +19,8 @@ C:\Web-workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\19437296
 \JSP_Project\src
 C:\Web-workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\436020015.index
 \AjaxProject\src
+C:\Web-workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\248374409.index
+\ActionProject\src
 C:\Web-workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2438777010.index
 \WebSocketProject1\src
 C:\Web-workspace2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3728457815.index
