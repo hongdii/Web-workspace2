@@ -100,6 +100,7 @@ ${ num1 gt num2 } 은 문자열과 문자열로 비교하는 것이기때문에 
 </c:if>
 
 <!-- num1 <= num2 -->
+	<!-- test="EL표현식" -->
 <c:if test="${num1*1 le num2*1 }">
 	<b>num1이 num2보다 작거나 같습니다</b><br>
 </c:if>
@@ -222,17 +223,46 @@ for loop문 - (&lt;c:forEach var="변수명" begin="초기값" end="끝값" step
 	
 </table>
 
+<h3>5. 반복문 - forTokens</h3>
+<pre>
+&lt;c:forTokens var="각 값을 보관할 변수" items="분리시키고자하는 문자열" delims="구분자"&gt;
+- 구분자를 통해서 분리된 각각의 문자열에 순차적으로 접근하면서 반복 수행
+- Java의 split("구분자") 혹은 StringTokenizer와 비슷한 역할을 수행하는 태그
+</pre>
+
+<c:set var="device" value="컴퓨터,핸드폰,TV,에어컨,냉장고.세탁기/비데"/>
+
+<!-- 	delims안에 들어가는 구분자는 모두 하나의 문자열이 아니라, 각각 하나의 구분자로써 사용됨 -->
 
 
+<ul>
+	<c:forTokens var="d" items="${device }" delims=",./">
+		<li>${d }</li>
+	</c:forTokens>
+</ul>
 
+<h3>6. 쿼리스트링 관련 태그 - url, param</h3>
+<pre>
+&lt;c:url var="변수명" value="요청할 url"&gt;
+	&lt;c:param name="키값" value="벨류값"/&gt;
+	&lt;c:param name="키값" value="벨류값"/&gt;
+	&lt;c:param name="키값" value="벨류값"/&gt;
+&lt;/c:url&gt;
+- url 경로를 생성을 하고, 쿼리스트링을 정의할 수 있는 태그
+- 넘겨줘야할 쿼리스트링이 길 경우 사용하면 편리하고,
+- 특정조건에 따라 파라미터 값을 다르게 보내야할때 자주 사용됨
+</pre>
 
+<c:set var="contextPath" value="<%= request.getContextPath() %>" />
 
+<a href="${contextPath }/list.do?currentPage=1&num=4"></a> <br>
 
+<c: url var="query" value="list.do">
+	<c:param name="currentPage">1</c:param>
+	<c:param name="num" value="4" />
+</c:>
 
-
-
-
-
+<a href="${contextPath }/${query }">c:url을 이용한 방식</a>
 
 
 
